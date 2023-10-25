@@ -1,0 +1,38 @@
+.main-header {
+  background-color: var(--color-white);
+  height: 120px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+      height: 46px;
+      width: 46px;
+      background-color: var(--color-yellow);
+      border-bottom-left-radius: 10px;
+      position: relative;
+      margin-right: 10px;
+
+      .detail {
+        height: 14px;
+        width: 14px;
+        border-top: 7px solid var(--color-navy);
+        border-right: 7px solid var(--color-navy);
+        position: absolute;
+        top: 7px;
+        right: 7px;
+      }
+    }
+
+    &__title {
+      font-weight: bold;
+      font-size: 22px;
+      color: var(--color-navy);
+    }
+  }
+}
