@@ -1,0 +1,66 @@
+.products {
+  height: 100%;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  .table-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--color-white);
+
+    &__table {
+      flex: 1;
+      padding: 20px;
+      overflow: auto;
+
+      .table-wrapper {
+        height: 100%;
+        overflow: auto;
+
+        table {
+          border-collapse: collapse;
+          width: 100%;
+
+          th {
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0px;
+            z-index: 2;
+            background-color: var(--color-background);
+            min-width: 160px;
+          }
+
+          th,
+          td {
+            text-align: left;
+            height: min-content;
+            padding: 20px;
+            border-bottom: 2px solid var(--color-navy-light);
+
+            &.center-align {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    &__paginator {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+
+      select {
+        width: 60px;
+        height: 24px;
+        border-radius: 3px;
+      }
+    }
+  }
+}

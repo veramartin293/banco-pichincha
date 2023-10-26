@@ -8,9 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './components/toast/toast.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ProductComponent, ToastComponent],
+  declarations: [AppComponent, HeaderComponent, ProductComponent, ToastComponent, ProductsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
