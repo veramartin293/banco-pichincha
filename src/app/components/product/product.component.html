@@ -1,40 +1,162 @@
 <div class="product">
-  <form class="product-form">
+  <form class="product-form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <legend class="product-form__legend">Formulario de Registro</legend>
     <div class="product-form__body">
-      <div class="form-control">
+      <div
+        class="form-control"
+        [class.form-control--error]="
+          form.controls.id.invalid && form.controls.id.touched
+        "
+      >
         <label for="id" class="form-control__label">ID</label>
-        <input type="text" id="id" class="form-control__field" />
+        <input
+          type="text"
+          id="id"
+          class="form-control__field"
+          formControlName="id"
+        />
+        <div
+          class="form-control__error"
+          *ngIf="form.controls.id.invalid && form.controls.id.touched"
+        >
+          <ng-container *ngIf="form.controls.id.errors!['required']">
+            ID requerido
+          </ng-container>
+          <ng-container *ngIf="form.controls.id.errors!['minlength']">
+            Ingrese mínimo 3 caracteres
+          </ng-container>
+          <ng-container *ngIf="form.controls.id.errors!['maxlength']">
+            Ingrese máximo 10 caracteres
+          </ng-container>
+        </div>
       </div>
 
-      <div class="form-control">
+      <div
+        class="form-control"
+        [class.form-control--error]="
+          form.controls.name.invalid && form.controls.name.touched
+        "
+      >
         <label for="id" class="form-control__label">Nombre</label>
-        <input type="text" id="name" class="form-control__field" />
+        <input
+          type="text"
+          id="name"
+          class="form-control__field"
+          formControlName="name"
+        />
+        <div
+          class="form-control__error"
+          *ngIf="form.controls.name.invalid && form.controls.name.touched"
+        >
+          <ng-container *ngIf="form.controls.name.errors!['required']">
+            Nombre requerido
+          </ng-container>
+          <ng-container *ngIf="form.controls.name.errors!['minlength']">
+            Ingrese mínimo 5 caracteres
+          </ng-container>
+          <ng-container *ngIf="form.controls.name.errors!['maxlength']">
+            Ingrese máximo 100 caracteres
+          </ng-container>
+        </div>
       </div>
 
-      <div class="form-control">
+      <div
+        class="form-control"
+        [class.form-control--error]="
+          form.controls.description.invalid && form.controls.description.touched
+        "
+      >
         <label for="id" class="form-control__label">Descripción</label>
-        <input type="text" id="desc" class="form-control__field" />
+        <input
+          type="text"
+          id="desc"
+          class="form-control__field"
+          formControlName="description"
+        />
+        <div
+          class="form-control__error"
+          *ngIf="
+            form.controls.description.invalid &&
+            form.controls.description.touched
+          "
+        >
+          <ng-container *ngIf="form.controls.description.errors!['required']">
+            Descripción requerida
+          </ng-container>
+          <ng-container *ngIf="form.controls.description.errors!['minlength']">
+            Ingrese mínimo 10 caracteres
+          </ng-container>
+          <ng-container *ngIf="form.controls.description.errors!['maxlength']">
+            Ingrese máximo 200 caracteres
+          </ng-container>
+        </div>
       </div>
 
-      <div class="form-control">
+      <div
+        class="form-control"
+        [class.form-control--error]="
+          form.controls.logo.invalid && form.controls.logo.touched
+        "
+      >
         <label for="id" class="form-control__label">Logo</label>
-        <input type="text" id="logo" class="form-control__field" />
+        <input
+          type="text"
+          id="logo"
+          class="form-control__field"
+          formControlName="logo"
+        />
+        <div
+          class="form-control__error"
+          *ngIf="form.controls.logo.invalid && form.controls.logo.touched"
+        >
+          Logo requerido
+        </div>
       </div>
 
-      <div class="form-control">
+      <div
+        class="form-control"
+        [class.form-control--error]="
+          form.controls.date_release.invalid &&
+          form.controls.date_release.touched
+        "
+      >
         <label for="id" class="form-control__label">Fecha Liberación</label>
-        <input type="date" id="lib-date" class="form-control__field" />
+        <input
+          type="date"
+          id="lib-date"
+          class="form-control__field"
+          formControlName="date_release"
+          min="{{ todaysDate | date : 'yyyy-MM-dd' }}"
+          (change)="onReleaseDateChange($event)"
+        />
+        <div
+          class="form-control__error"
+          *ngIf="
+            form.controls.date_release.invalid &&
+            form.controls.date_release.touched
+          "
+        >
+          Fecha de liberación requerida
+        </div>
       </div>
 
       <div class="form-control">
         <label for="id" class="form-control__label">Fecha Revisión</label>
-        <input type="date" id="rev-date" class="form-control__field" />
+        <input
+          type="date"
+          id="rev-date"
+          class="form-control__field"
+          formControlName="date_revision"
+        />
       </div>
     </div>
     <div class="product-form__actions">
-      <button class="btn btn--secondary">Reiniciar</button>
-      <button class="btn btn--primary">Enviar</button>
+      <button class="btn btn--secondary" type="button" (click)="resetForm()">
+        Reiniciar
+      </button>
+      <button class="btn btn--primary" type="submit" [disabled]="form.invalid">
+        Enviar
+      </button>
     </div>
   </form>
 </div>

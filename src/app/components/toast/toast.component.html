@@ -1,0 +1,10 @@
+<div
+  class="toast"
+  *ngFor="let toast of toast$ | async"
+  [ngClass]="{
+    'toast--success': toast.type === 'success',
+    'toast--error': toast.type === 'error'
+  }"
+>
+  {{ toast.text }}
+</div>

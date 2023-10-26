@@ -6,10 +6,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ProductComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, HeaderComponent, ProductComponent, ToastComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
