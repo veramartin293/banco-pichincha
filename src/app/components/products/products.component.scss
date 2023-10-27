@@ -5,20 +5,28 @@
   flex-direction: column;
   overflow-y: auto;
 
-  .table-container {
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__table {
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     background-color: var(--color-white);
 
-    &__table {
+    .table-container {
       flex: 1;
       padding: 20px;
       overflow: auto;
+      display: flex;
+      flex-direction: column;
 
-      .table-wrapper {
-        height: 100%;
+      &__wrapper {
+        flex: 1;
         overflow: auto;
 
         table {
@@ -59,20 +67,20 @@
           }
         }
       }
-    }
 
-    &__paginator {
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: bold;
+      &__paginator {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
 
-      select {
-        width: 60px;
-        height: 24px;
-        border-radius: 3px;
-        outline: none;
+        select {
+          width: 60px;
+          height: 24px;
+          border-radius: 3px;
+          outline: none;
+        }
       }
     }
   }

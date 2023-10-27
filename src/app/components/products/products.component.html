@@ -1,11 +1,19 @@
 <div class="products">
-  <div class="search-field form-control">
-    <input type="text" placeholder="Buscar..." [formControl]="searchControl" />
+  <div class="products__actions">
+    <div class="search-field form-control">
+      <input
+        type="text"
+        placeholder="Buscar..."
+        [formControl]="searchControl"
+      />
+    </div>
+
+    <a routerLink="/producto" class="btn btn--primary btn--link">Agregar</a>
   </div>
 
-  <div class="table-container">
-    <div class="table-container__table">
-      <div class="table-wrapper">
+  <div class="products__table">
+    <div class="table-container">
+      <div class="table-container__wrapper">
         <table>
           <tr>
             <th class="center-align">Logo</th>
@@ -26,15 +34,16 @@
           </tr>
         </table>
       </div>
-    </div>
-    <div class="table-container__paginator">
-      <div class="num-results">{{ numResults + " Resultados" }}</div>
 
-      <select name="page-size" id="page-size">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">20</option>
-      </select>
+      <div class="table-container__paginator">
+        <div class="num-results">{{ numResults + " Resultados" }}</div>
+
+        <select name="page-size" id="page-size">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">20</option>
+        </select>
+      </div>
     </div>
   </div>
 </div>
