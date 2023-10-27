@@ -25,6 +25,18 @@
           border-collapse: collapse;
           width: 100%;
 
+          th,
+          td {
+            text-align: left;
+            height: min-content;
+            padding: 18px;
+            border-bottom: 2px solid var(--color-navy-light);
+
+            &.center-align {
+              text-align: center;
+            }
+          }
+
           th {
             position: sticky;
             position: -webkit-sticky;
@@ -34,15 +46,15 @@
             min-width: 160px;
           }
 
-          th,
           td {
-            text-align: left;
-            height: min-content;
-            padding: 20px;
-            border-bottom: 2px solid var(--color-navy-light);
-
-            &.center-align {
-              text-align: center;
+            &.img-cell {
+              img {
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+                letter-spacing: 0;
+              }
             }
           }
         }

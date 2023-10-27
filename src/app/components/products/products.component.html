@@ -16,7 +16,9 @@
           </tr>
 
           <tr *ngFor="let product of products$ | async">
-            <td class="center-align">Dato ejemplo 1</td>
+            <td class="center-align img-cell">
+              <img [src]="product.logo" alt="logo" />
+            </td>
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.date_release }}</td>
