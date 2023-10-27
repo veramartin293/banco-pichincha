@@ -15,46 +15,18 @@
             <th>Fecha de revisión</th>
           </tr>
 
-          <tr>
+          <tr *ngFor="let product of products$ | async">
             <td class="center-align">Dato ejemplo 1</td>
-            <td>Dato ejemplo 2</td>
-            <td>Dato ejemplo 3</td>
-            <td>Dato ejemplo 4</td>
-            <td>Dato ejemplo 5</td>
-          </tr>
-          <tr>
-            <td class="center-align">Dato ejemplo 1</td>
-            <td>Dato ejemplo 2</td>
-            <td>Dato ejemplo 3</td>
-            <td>Dato ejemplo 4</td>
-            <td>Dato ejemplo 5</td>
-          </tr>
-          <tr>
-            <td class="center-align">Dato ejemplo 1</td>
-            <td>Dato ejemplo 2</td>
-            <td>Dato ejemplo 3</td>
-            <td>Dato ejemplo 4</td>
-            <td>Dato ejemplo 5</td>
-          </tr>
-          <tr>
-            <td class="center-align">Dato ejemplo 1</td>
-            <td>Dato ejemplo 2</td>
-            <td>Dato ejemplo 3</td>
-            <td>Dato ejemplo 4</td>
-            <td>Dato ejemplo 5</td>
-          </tr>
-          <tr>
-            <td class="center-align">Dato ejemplo 1</td>
-            <td>Dato ejemplo 2</td>
-            <td>Dato ejemplo 3</td>
-            <td>Dato ejemplo 4</td>
-            <td>Dato ejemplo 5</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.date_release }}</td>
+            <td>{{ product.date_revision }}</td>
           </tr>
         </table>
       </div>
     </div>
     <div class="table-container__paginator">
-      <div class="num-results">5 resultados</div>
+      <div class="num-results">{{ numResults + " Resultados" }}</div>
 
       <select name="page-size" id="page-size">
         <option value="5">5</option>
