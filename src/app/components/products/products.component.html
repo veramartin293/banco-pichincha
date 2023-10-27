@@ -1,6 +1,6 @@
 <div class="products">
   <div class="search-field form-control">
-    <input type="text" placeholder="Buscar..." />
+    <input type="text" placeholder="Buscar..." [formControl]="searchControl" />
   </div>
 
   <div class="table-container">
@@ -15,7 +15,7 @@
             <th>Fecha de revisión</th>
           </tr>
 
-          <tr *ngFor="let product of products$ | async">
+          <tr *ngFor="let product of filteredProducts$ | async">
             <td class="center-align img-cell">
               <img [src]="product.logo" alt="logo" />
             </td>
