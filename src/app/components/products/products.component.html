@@ -23,7 +23,7 @@
             <th>Fecha de revisión</th>
           </tr>
 
-          <tr *ngFor="let product of filteredProducts$ | async">
+          <tr *ngFor="let product of productsToShow$ | async">
             <td class="center-align img-cell">
               <img [src]="product.logo" alt="logo" />
             </td>
@@ -35,13 +35,18 @@
         </table>
       </div>
 
-      <div class="table-container__paginator">
-        <div class="num-results">{{ numResults + " Resultados" }}</div>
+      <div class="table-container__results-num">
+        <div class="total">{{ numResults + " Resultados" }}</div>
 
-        <select name="page-size" id="page-size">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">20</option>
+        <select
+          name="page-size"
+          id="page-size"
+          class="max-results"
+          [formControl]="maxResultsControl"
+        >
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
         </select>
       </div>
     </div>
