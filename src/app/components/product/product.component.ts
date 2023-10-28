@@ -72,7 +72,6 @@ export class ProductComponent implements OnDestroy {
   }
 
   onReleaseDateChange(e: any) {
-    console.log('change event', e.target.value);
     // Fecha en formate yyyy-MM-DD
     const stringDate: string = e.target.value;
     if (stringDate) {
@@ -83,17 +82,13 @@ export class ProductComponent implements OnDestroy {
       const releaseDate = new Date(year, month, day);
       const revisionDate = new Date(releaseDate);
       revisionDate.setFullYear(releaseDate.getFullYear() + 1);
-      console.log('revisionDate', revisionDate);
       const revisionDateString = this.getformattedDateString(revisionDate);
-      console.log('revision date string', revisionDateString);
       this.form.controls.date_revision.setValue(revisionDateString);
     }
   }
 
   onSubmit() {
-    console.log('onSubmit');
     const formValue = this.form.getRawValue();
-    console.log('fomrValue', formValue);
     this.sub = this.productService.saveProduct(formValue).subscribe({
       next: () => {
         this.toastService.displayToast(
@@ -101,8 +96,8 @@ export class ProductComponent implements OnDestroy {
         );
         this.form.reset();
       },
-      error: () => {
-        new Toast('Ocurrió un error en el servidor', 'error');
+      error: (err: string) => {
+        this.toastService.displayToast(new Toast(err, 'error'));
       },
     });
   }

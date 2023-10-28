@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product.model';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -41,8 +41,18 @@ export class ProductService {
   }
 
   saveProduct(product: Product): Observable<any> {
-    return this.http.post(`${environment.API_URL}/bp/products`, product, {
-      headers: { authorId: '223' },
-    });
+    return this.http
+      .post(`${environment.API_URL}/bp/products`, product, {
+        headers: { authorId: '223' },
+      })
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status === 400) {
+            throw 'El id del producto está duplicado';
+          } else {
+            throw 'Ocurrió un error en el servidor, inténtelo más tarde';
+          }
+        })
+      );
   }
 }
