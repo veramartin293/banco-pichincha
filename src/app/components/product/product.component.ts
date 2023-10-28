@@ -1,7 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { CustomValidation } from 'src/app/models/custom-validators.class';
 import { Toast } from 'src/app/models/toast.model';
+import { Utils } from 'src/app/models/utils.class';
 import { ProductService } from 'src/app/services/product.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -42,7 +44,7 @@ export class ProductComponent implements OnDestroy {
     }),
     date_release: new FormControl<string>('', {
       nonNullable: true,
-      validators: [Validators.required],
+      validators: [CustomValidation.minDate],
     }),
     date_revision: new FormControl<string>(
       { value: '', disabled: true },
@@ -60,29 +62,14 @@ export class ProductComponent implements OnDestroy {
     private toastService: ToastService
   ) {}
 
-  getformattedDateString(date: Date): string {
-    const mm = date.getMonth() + 1;
-    const dd = date.getDate();
-
-    return [
-      date.getFullYear(),
-      (mm > 9 ? '' : '0') + mm,
-      (dd > 9 ? '' : '0') + dd,
-    ].join('-');
-  }
-
   onReleaseDateChange(e: any) {
     // Fecha en formate yyyy-MM-DD
     const stringDate: string = e.target.value;
     if (stringDate) {
-      const dateParts = stringDate.split('-');
-      const year = parseInt(dateParts[0], 10);
-      const month = parseInt(dateParts[1], 10) - 1;
-      const day = parseInt(dateParts[2], 10);
-      const releaseDate = new Date(year, month, day);
+      const releaseDate = Utils.getDateObjFromString(stringDate);
       const revisionDate = new Date(releaseDate);
       revisionDate.setFullYear(releaseDate.getFullYear() + 1);
-      const revisionDateString = this.getformattedDateString(revisionDate);
+      const revisionDateString = Utils.getformattedDateString(revisionDate);
       this.form.controls.date_revision.setValue(revisionDateString);
     }
   }
